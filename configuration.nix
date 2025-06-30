@@ -154,6 +154,8 @@
   services.keyd.enable = true;
   services.power-profiles-daemon.enable = true;
   # services.auto-cpufreq.enable = true;  
+  
+  # services.logind.lidSwitch = "ignore";  
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
