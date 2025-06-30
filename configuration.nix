@@ -101,7 +101,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    # jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -137,14 +137,14 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ pkgs.gh pkgs.nerd-fonts.hack pkgs.microsoft-edge pkgs.librewolf pkgs.hyprland-autoname-workspaces pkgs.rofi-wayland pkgs.swayest-workstyle pkgs.nerd-fonts.meslo-lg pkgs.font-awesome pkgs.libreoffice-qt6-fresh pkgs.fzf pkgs.zoxide pkgs.eza pkgs.foot pkgs.waybar pkgs.i3status pkgs.wmenu pkgs.python314 pkgs.avizo pkgs.efibootmgr pkgs.lm_sensors pkgs.libnotify pkgs.ghostty pkgs.swaynotificationcenter pkgs.os-prober pkgs.btop pkgs.hyprlock pkgs.hypridle pkgs.hyprpaper pkgs.clipman pkgs.blesh pkgs.atuin pkgs.nix-index pkgs.kdePackages.okular pkgs.kdePackages.qtmultimedia pkgs.where-is-my-sddm-theme pkgs.swww pkgs.waypaper pkgs.brightnessctl pkgs.hyprpolkitagent pkgs.fastfetch pkgs.kitty pkgs.wofi pkgs.keyd pkgs.git pkgs.wget pkgs.gparted pkgs.ntfs3g pkgs.chiaki-ng pkgs.google-chrome
+  environment.systemPackages = with pkgs; [ pkgs.protonup-rs pkgs.gh pkgs.nerd-fonts.hack pkgs.microsoft-edge pkgs.librewolf pkgs.hyprland-autoname-workspaces pkgs.rofi-wayland pkgs.swayest-workstyle pkgs.nerd-fonts.meslo-lg pkgs.font-awesome pkgs.libreoffice-qt6-fresh pkgs.fzf pkgs.zoxide pkgs.eza pkgs.foot pkgs.waybar pkgs.i3status pkgs.wmenu pkgs.python314 pkgs.avizo pkgs.efibootmgr pkgs.lm_sensors pkgs.libnotify pkgs.ghostty pkgs.swaynotificationcenter pkgs.os-prober pkgs.btop pkgs.hyprlock pkgs.hypridle pkgs.hyprpaper pkgs.clipman pkgs.blesh pkgs.atuin pkgs.nix-index pkgs.kdePackages.okular pkgs.kdePackages.qtmultimedia pkgs.where-is-my-sddm-theme pkgs.swww pkgs.waypaper pkgs.brightnessctl pkgs.hyprpolkitagent pkgs.fastfetch pkgs.kitty pkgs.wofi pkgs.keyd pkgs.git pkgs.wget pkgs.gparted pkgs.ntfs3g pkgs.chiaki-ng pkgs.google-chrome
    (pkgs.callPackage ./sddm-astronaut-theme.nix {
         theme = "jake_the_dog";
         themeConfig={
             General = {
-            HeaderText ="Hi";
+            HeaderText ="Welcome Zen";
             #Background="/home/user/Desktop/wp.png";
-            FontSize="10.0";
+            #FontSize="10.0";
                 };      
             };
       })
