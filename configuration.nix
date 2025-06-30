@@ -6,6 +6,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # ./sddm-astronaut.nix
     ];
 
   # Bootloader.
@@ -136,7 +137,17 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ pkgs.gh pkgs.nerd-fonts.hack pkgs.microsoft-edge pkgs.librewolf pkgs.hyprland-autoname-workspaces pkgs.rofi-wayland pkgs.swayest-workstyle pkgs.nerd-fonts.meslo-lg pkgs.font-awesome pkgs.libreoffice-qt6-fresh pkgs.fzf pkgs.zoxide pkgs.eza pkgs.foot pkgs.waybar pkgs.i3status pkgs.wmenu pkgs.python314 pkgs.avizo pkgs.efibootmgr pkgs.lm_sensors pkgs.libnotify pkgs.ghostty pkgs.swaynotificationcenter pkgs.os-prober pkgs.btop pkgs.hyprlock pkgs.hypridle pkgs.hyprpaper pkgs.clipman pkgs.blesh pkgs.atuin pkgs.nix-index pkgs.kdePackages.okular pkgs.kdePackages.qtmultimedia pkgs.sddm-astronaut pkgs.where-is-my-sddm-theme pkgs.swww pkgs.waypaper pkgs.brightnessctl pkgs.hyprpolkitagent pkgs.fastfetch pkgs.kitty pkgs.wofi pkgs.keyd pkgs.git pkgs.wget pkgs.gparted pkgs.ntfs3g pkgs.chiaki-ng pkgs.google-chrome
+  environment.systemPackages = with pkgs; [ pkgs.gh pkgs.nerd-fonts.hack pkgs.microsoft-edge pkgs.librewolf pkgs.hyprland-autoname-workspaces pkgs.rofi-wayland pkgs.swayest-workstyle pkgs.nerd-fonts.meslo-lg pkgs.font-awesome pkgs.libreoffice-qt6-fresh pkgs.fzf pkgs.zoxide pkgs.eza pkgs.foot pkgs.waybar pkgs.i3status pkgs.wmenu pkgs.python314 pkgs.avizo pkgs.efibootmgr pkgs.lm_sensors pkgs.libnotify pkgs.ghostty pkgs.swaynotificationcenter pkgs.os-prober pkgs.btop pkgs.hyprlock pkgs.hypridle pkgs.hyprpaper pkgs.clipman pkgs.blesh pkgs.atuin pkgs.nix-index pkgs.kdePackages.okular pkgs.kdePackages.qtmultimedia pkgs.where-is-my-sddm-theme pkgs.swww pkgs.waypaper pkgs.brightnessctl pkgs.hyprpolkitagent pkgs.fastfetch pkgs.kitty pkgs.wofi pkgs.keyd pkgs.git pkgs.wget pkgs.gparted pkgs.ntfs3g pkgs.chiaki-ng pkgs.google-chrome
+   (pkgs.callPackage ./sddm-astronaut-theme.nix {
+        theme = "jake_the_dog";
+        themeConfig={
+            General = {
+            HeaderText ="Hi";
+            #Background="/home/user/Desktop/wp.png";
+            FontSize="10.0";
+                };      
+            };
+      })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -156,7 +167,7 @@
   # services.auto-cpufreq.enable = true;  
   
   # services.logind.lidSwitch = "ignore";  
-
+  
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
