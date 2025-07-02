@@ -6,6 +6,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #./swayosd.nix
       # ./sddm-astronaut.nix
     ];
 
@@ -100,6 +101,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     # jack.enable = true;
 
@@ -137,7 +139,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ pkgs.protonup-rs pkgs.gh pkgs.nerd-fonts.hack pkgs.microsoft-edge pkgs.librewolf pkgs.hyprland-autoname-workspaces pkgs.rofi-wayland pkgs.swayest-workstyle pkgs.nerd-fonts.meslo-lg pkgs.font-awesome pkgs.libreoffice-qt6-fresh pkgs.fzf pkgs.zoxide pkgs.eza pkgs.foot pkgs.waybar pkgs.i3status pkgs.wmenu pkgs.python314 pkgs.avizo pkgs.efibootmgr pkgs.lm_sensors pkgs.libnotify pkgs.ghostty pkgs.swaynotificationcenter pkgs.os-prober pkgs.btop pkgs.hyprlock pkgs.hypridle pkgs.hyprpaper pkgs.clipman pkgs.blesh pkgs.atuin pkgs.nix-index pkgs.kdePackages.okular pkgs.kdePackages.qtmultimedia pkgs.where-is-my-sddm-theme pkgs.swww pkgs.waypaper pkgs.brightnessctl pkgs.hyprpolkitagent pkgs.fastfetch pkgs.kitty pkgs.wofi pkgs.keyd pkgs.git pkgs.wget pkgs.gparted pkgs.ntfs3g pkgs.chiaki-ng pkgs.google-chrome
+  environment.systemPackages = with pkgs; [ pkgs.swayosd pkgs.acpi pkgs.protontricks pkgs.gh pkgs.microsoft-edge pkgs.librewolf pkgs.hyprland-autoname-workspaces pkgs.rofi-wayland pkgs.swayest-workstyle pkgs.libreoffice-qt6-fresh pkgs.fzf pkgs.zoxide pkgs.eza pkgs.foot pkgs.waybar pkgs.i3status pkgs.wmenu pkgs.python314 pkgs.avizo pkgs.efibootmgr pkgs.lm_sensors pkgs.libnotify pkgs.ghostty pkgs.swaynotificationcenter pkgs.os-prober pkgs.btop pkgs.hyprlock pkgs.hypridle pkgs.hyprpaper pkgs.clipman pkgs.blesh pkgs.atuin pkgs.nix-index pkgs.kdePackages.okular pkgs.kdePackages.qtmultimedia pkgs.where-is-my-sddm-theme pkgs.swww pkgs.waypaper pkgs.brightnessctl pkgs.hyprpolkitagent pkgs.fastfetch pkgs.kitty pkgs.wofi pkgs.keyd pkgs.git pkgs.wget pkgs.gparted pkgs.ntfs3g pkgs.chiaki-ng pkgs.google-chrome
    (pkgs.callPackage ./sddm-astronaut-theme.nix {
         theme = "jake_the_dog";
         themeConfig={
@@ -149,6 +151,7 @@
             };
       })
   ];
+  fonts.packages = with pkgs; [ pkgs.nerd-fonts.jetbrains-mono pkgs.nerd-fonts.meslo-lg pkgs.nerd-fonts.noto pkgs.nerd-fonts.hack pkgs.font-awesome ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -164,9 +167,27 @@
   # services.openssh.enable = true;
   services.keyd.enable = true;
   services.power-profiles-daemon.enable = true;
+  # services.swayosd.enable = true;
   # services.auto-cpufreq.enable = true;  
   
   # services.logind.lidSwitch = "ignore";  
+  #swayosd backend service
+  services.udev.packages = [ pkgs.swayosd ];
+
+    systemd.services.swayosd-libinput-backend = {
+      description = "SwayOSD LibInput backend for listening to certain keys like CapsLock, ScrollLock, VolumeUp, etc.";
+      documentation = [ "https://github.com/ErikReider/SwayOSD" ];
+      wantedBy = [ "graphical.target" ];
+      partOf = [ "graphical.target" ];
+      after = [ "graphical.target" ];
+
+      serviceConfig = {
+        Type = "dbus";
+        BusName = "org.erikreider.swayosd";
+        ExecStart = "${pkgs.swayosd}/bin/swayosd-libinput-backend";
+        Restart = "on-failure";
+      };
+    };
   
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
