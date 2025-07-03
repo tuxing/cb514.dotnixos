@@ -6,8 +6,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #./swayosd.nix
-      # ./sddm-astronaut.nix
+      ./packages.nix
+      #./specialservices.nix
     ];
 
   # Bootloader.
@@ -61,17 +61,14 @@
   # You can disable this if you're only using the Wayland session.
   # services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  # services.displayManager.sddm.package = pkgs.kdePackages.sddm;
+  
   services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.defaultSession = "hyprland";
   services.displayManager.sddm.theme = "sddm-astronaut-theme";
   services.desktopManager.plasma6.enable = true;
 
 
-  # xdg.portal.wlr.enable = true;
   xdg.menus.enable = true;
   xdg.mime.enable = true;
 
@@ -101,7 +98,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    wireplumber.enable = true;
+    # wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     # jack.enable = true;
 
@@ -128,7 +125,6 @@
   services.displayManager.autoLogin.enable = false;
   #services.displayManager.autoLogin.user = "zen";
   
-  # services.passSecretService.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
   # enable dynamically linked execs
@@ -136,82 +132,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [ 
-   pkgs.mpg123 
-   pkgs.swayosd 
-   pkgs.acpi 
-   pkgs.protontricks 
-   pkgs.gh 
-   pkgs.microsoft-edge 
-   pkgs.librewolf 
-   pkgs.hyprland-autoname-workspaces 
-   pkgs.rofi-wayland 
-   pkgs.swayest-workstyle 
-   pkgs.libreoffice-qt6-fresh 
-   pkgs.fzf 
-   pkgs.eza 
-   pkgs.foot 
-   pkgs.waybar 
-   pkgs.i3status 
-   pkgs.wmenu 
-   pkgs.python314 
-   pkgs.efibootmgr 
-   pkgs.lm_sensors 
-   pkgs.libnotify 
-   pkgs.ghostty 
-   pkgs.swaynotificationcenter 
-   pkgs.os-prober 
-   pkgs.btop 
-   pkgs.hyprlock 
-   pkgs.hypridle 
-   pkgs.hyprpaper 
-   pkgs.clipman 
-   pkgs.blesh 
-   pkgs.atuin 
-   pkgs.nix-index 
-   pkgs.kdePackages.okular 
-   pkgs.kdePackages.qtmultimedia 
-   pkgs.swww 
-   pkgs.waypaper 
-   pkgs.brightnessctl 
-   pkgs.hyprpolkitagent 
-   pkgs.fastfetch 
-   pkgs.kitty 
-   pkgs.wofi 
-   pkgs.keyd 
-   pkgs.git 
-   pkgs.wget 
-   pkgs.gparted 
-   pkgs.ntfs3g 
-   pkgs.chiaki-ng 
-   pkgs.google-chrome
-   
-   #special packages 
-   (pkgs.callPackage ./sddm-astronaut-theme.nix {
-        theme = "jake_the_dog";
-        themeConfig={
-            General = {
-            HeaderText ="Welcome Zen";
-            #Background="/home/user/Desktop/wp.png";
-            #FontSize="10.0";
-                };      
-            };
-      })
-  ];
-
-   fonts.packages = with pkgs; [ 
-   pkgs.nerd-fonts.sauce-code-pro 
-   pkgs.nerd-fonts._3270 
-   pkgs.nerd-fonts._0xproto 
-   pkgs.nerd-fonts.jetbrains-mono 
-   pkgs.nerd-fonts.meslo-lg 
-   pkgs.nerd-fonts.noto 
-   pkgs.nerd-fonts.hack 
-   pkgs.font-awesome 
-   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -227,28 +147,6 @@
   # services.openssh.enable = true;
   services.keyd.enable = true;
   services.power-profiles-daemon.enable = true;
-  # services.swayosd.enable = true;
-  # services.auto-cpufreq.enable = true;  
-  
-  # services.logind.lidSwitch = "ignore";  
-  
-  #swayosd backend service
-  services.udev.packages = [ pkgs.swayosd ];
-
-    systemd.services.swayosd-libinput-backend = {
-      description = "SwayOSD LibInput backend for listening to certain keys like CapsLock, ScrollLock, VolumeUp, etc.";
-      documentation = [ "https://github.com/ErikReider/SwayOSD" ];
-      wantedBy = [ "graphical.target" ];
-      partOf = [ "graphical.target" ];
-      after = [ "graphical.target" ];
-
-      serviceConfig = {
-        Type = "dbus";
-        BusName = "org.erikreider.swayosd";
-        ExecStart = "${pkgs.swayosd}/bin/swayosd-libinput-backend";
-        Restart = "on-failure";
-      };
-    };
   
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
