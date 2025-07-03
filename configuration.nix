@@ -139,7 +139,57 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ pkgs.swayosd pkgs.acpi pkgs.protontricks pkgs.gh pkgs.microsoft-edge pkgs.librewolf pkgs.hyprland-autoname-workspaces pkgs.rofi-wayland pkgs.swayest-workstyle pkgs.libreoffice-qt6-fresh pkgs.fzf pkgs.zoxide pkgs.eza pkgs.foot pkgs.waybar pkgs.i3status pkgs.wmenu pkgs.python314 pkgs.avizo pkgs.efibootmgr pkgs.lm_sensors pkgs.libnotify pkgs.ghostty pkgs.swaynotificationcenter pkgs.os-prober pkgs.btop pkgs.hyprlock pkgs.hypridle pkgs.hyprpaper pkgs.clipman pkgs.blesh pkgs.atuin pkgs.nix-index pkgs.kdePackages.okular pkgs.kdePackages.qtmultimedia pkgs.where-is-my-sddm-theme pkgs.swww pkgs.waypaper pkgs.brightnessctl pkgs.hyprpolkitagent pkgs.fastfetch pkgs.kitty pkgs.wofi pkgs.keyd pkgs.git pkgs.wget pkgs.gparted pkgs.ntfs3g pkgs.chiaki-ng pkgs.google-chrome
+  environment.systemPackages = with pkgs; [ 
+   pkgs.mpg123 
+   pkgs.swayosd 
+   pkgs.acpi 
+   pkgs.protontricks 
+   pkgs.gh 
+   pkgs.microsoft-edge 
+   pkgs.librewolf 
+   pkgs.hyprland-autoname-workspaces 
+   pkgs.rofi-wayland 
+   pkgs.swayest-workstyle 
+   pkgs.libreoffice-qt6-fresh 
+   pkgs.fzf 
+   pkgs.eza 
+   pkgs.foot 
+   pkgs.waybar 
+   pkgs.i3status 
+   pkgs.wmenu 
+   pkgs.python314 
+   pkgs.efibootmgr 
+   pkgs.lm_sensors 
+   pkgs.libnotify 
+   pkgs.ghostty 
+   pkgs.swaynotificationcenter 
+   pkgs.os-prober 
+   pkgs.btop 
+   pkgs.hyprlock 
+   pkgs.hypridle 
+   pkgs.hyprpaper 
+   pkgs.clipman 
+   pkgs.blesh 
+   pkgs.atuin 
+   pkgs.nix-index 
+   pkgs.kdePackages.okular 
+   pkgs.kdePackages.qtmultimedia 
+   pkgs.swww 
+   pkgs.waypaper 
+   pkgs.brightnessctl 
+   pkgs.hyprpolkitagent 
+   pkgs.fastfetch 
+   pkgs.kitty 
+   pkgs.wofi 
+   pkgs.keyd 
+   pkgs.git 
+   pkgs.wget 
+   pkgs.gparted 
+   pkgs.ntfs3g 
+   pkgs.chiaki-ng 
+   pkgs.google-chrome
+   
+   #special packages 
    (pkgs.callPackage ./sddm-astronaut-theme.nix {
         theme = "jake_the_dog";
         themeConfig={
@@ -151,7 +201,17 @@
             };
       })
   ];
-  fonts.packages = with pkgs; [ pkgs.nerd-fonts.jetbrains-mono pkgs.nerd-fonts.meslo-lg pkgs.nerd-fonts.noto pkgs.nerd-fonts.hack pkgs.font-awesome ];
+
+   fonts.packages = with pkgs; [ 
+   pkgs.nerd-fonts.sauce-code-pro 
+   pkgs.nerd-fonts._3270 
+   pkgs.nerd-fonts._0xproto 
+   pkgs.nerd-fonts.jetbrains-mono 
+   pkgs.nerd-fonts.meslo-lg 
+   pkgs.nerd-fonts.noto 
+   pkgs.nerd-fonts.hack 
+   pkgs.font-awesome 
+   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -171,6 +231,7 @@
   # services.auto-cpufreq.enable = true;  
   
   # services.logind.lidSwitch = "ignore";  
+  
   #swayosd backend service
   services.udev.packages = [ pkgs.swayosd ];
 
