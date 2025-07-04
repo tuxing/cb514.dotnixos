@@ -148,6 +148,8 @@
   services.keyd.enable = true;
   services.power-profiles-daemon.enable = true;
   
+  services.logind.powerKey = "ignore";
+ 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

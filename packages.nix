@@ -49,6 +49,8 @@
    pkgs.gparted 
    pkgs.chiaki-ng 
    pkgs.google-chrome
+   pkgs.nwg-bar
+   pkgs.wev
 
   ];
 
