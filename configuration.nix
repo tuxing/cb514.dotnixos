@@ -8,6 +8,7 @@
       ./hardware-configuration.nix
       ./packages.nix
       ./specialps.nix
+      ./grubentries.nix
     ];
 
   # Bootloader.
@@ -16,7 +17,13 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "nodev";
   boot.loader.grub.useOSProber = false;
-  boot.loader.grub.efiSupport = true; 
+  boot.loader.grub.efiSupport = true;   
+
+
+  #to address lid open sleep issue
+  # boot.kernelParams = [ "button.lid_init_state=open" ];
+  # services.logind.lidSwitchDocked = "ignore";
+  # services.logind.lidSwitch = "ignore";  
 
   #bluetooth
   hardware.bluetooth.enable = true;
@@ -80,6 +87,9 @@
 
   #steam
   programs.steam.enable = true;
+  
+  #river
+  programs.river.enable = true;  
 
   # Configure keymap in X11
   # services.xserver.xkb = {

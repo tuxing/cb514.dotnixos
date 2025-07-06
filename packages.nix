@@ -52,6 +52,7 @@
    pkgs.nwg-bar
    pkgs.wev
 
+
   ];
 
   
