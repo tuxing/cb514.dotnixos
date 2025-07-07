@@ -65,16 +65,6 @@ boot.loader.grub.extraEntries = ''
         export linuxloops_args
         configfile (loop,2)/grub/grub.cfg
   }
-  menuentry 'Brunch-reven settings' --class 'brunch-settings' {
-        img_path="/reven/Brunch-reven.img"
-        img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
-        search --no-floppy --set=root --file /reven/Brunch-reven.img
-        loopback loop /reven/Brunch-reven.img
-        source (loop,12)/efi/boot/settings.cfg
-        linux (loop,7)/kernel boot=local noresume noswap loglevel=7 options= chromeos_bootsplash= edit_brunch_config=1 \
-                cros_secure cros_debug img_uuid=382beb22-a137-49e8-b44a-ee62d376619d img_path=/reven/Brunch-reven.img
-        initrd (loop,7)/lib/firmware/amd-ucode.img (loop,7)/lib/firmware/intel-ucode.img (loop,7)/initramfs.img
-  }
   menuentry "Void" {
         img_path="/void/void.img"
         img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"

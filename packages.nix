@@ -51,6 +51,8 @@
    pkgs.google-chrome
    pkgs.nwg-bar
    pkgs.wev
+   pkgs.s-tui
+   pkgs.stress
 
 
   ];
