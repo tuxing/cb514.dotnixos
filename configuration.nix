@@ -18,7 +18,7 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.useOSProber = false;
   boot.loader.grub.efiSupport = true;   
-
+  boot.loader.grub.default = "saved";
 
   #to address lid open sleep issue
   # boot.kernelParams = [ "button.lid_init_state=open" ];

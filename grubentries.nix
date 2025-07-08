@@ -4,12 +4,14 @@
 
 boot.loader.grub.extraEntries = ''
     menuentry "Windows 11" {
+        savedefault
         insmod part_gpt
         insmod fat
         search --no-floppy --fs-uuid --set=root 5356-F39B
         chainloader /efi/Microsoft/Boot/bootmgfw.efi
   }
   menuentry "Arch Linux (on /dev/nvme0n1p10)" {
+        savedefault
         insmod part_gpt
         insmod fat
         search --no-floppy --fs-uuid --set=root 08CD-A51E
@@ -17,6 +19,7 @@ boot.loader.grub.extraEntries = ''
         initrd /initramfs-linux.img
   }
   menuentry "Pop!_OS 24.04 LTS (24.04) (on /dev/nvme0n1p11)" {
+        savedefault
         insmod part_gpt
         insmod ext2
         search --no-floppy --fs-uuid --set=root 9c5610c7-b2e2-49cb-a43e-6fbc5b17af42
@@ -24,6 +27,7 @@ boot.loader.grub.extraEntries = ''
         initrd /boot/initrd.img-6.15.0-061500-generic
   }
   menuentry "Linux Mint 22.1 Xia (22.1) (on /dev/nvme0n1p7)" {
+        savedefault
         insmod part_gpt
         insmod ext2
         search --no-floppy --fs-uuid --set=root 52b5953a-789d-4c4b-9d9a-771e4f90f083
@@ -31,6 +35,7 @@ boot.loader.grub.extraEntries = ''
         initrd /boot/initrd.img-6.15.0-061500-generic
   }
   menuentry "Ubuntu Questing Quokka (development branch) (25.10) (on /dev/nvme0n1p9)" {
+        savedefault
         insmod part_gpt
         insmod ext2
         search --no-floppy --fs-uuid --set=root 6bb17358-5660-4521-93e2-8a34d48431a3
@@ -57,6 +62,7 @@ boot.loader.grub.extraEntries = ''
 	initrd	/boot/intel-ucode.img /boot/amd-ucode.img /boot/initramfs-6.15-x86_64.img
   }
   menuentry "KDE Neon" {
+        savedefault
         img_path="/kde/KDE.img"
         img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
         search --no-floppy --set=root --file "/kde/KDE.img"
@@ -66,6 +72,7 @@ boot.loader.grub.extraEntries = ''
         configfile (loop,2)/grub/grub.cfg
   }
   menuentry "Void" {
+        savedefault
         img_path="/void/void.img"
         img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
         search --no-floppy --set=root --file "/void/void.img"
@@ -74,6 +81,37 @@ boot.loader.grub.extraEntries = ''
         export linuxloops_args
         configfile (loop,2)/grub/grub.cfg
   }
+  menuentry 'Bazzite' --class 'bazzite' {
+	savedefault
+        img_path="/bazzite/Bazzite.img"
+	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
+	search --no-floppy --set=root --file "/bazzite/Bazzite.img"
+	loopback loop "/bazzite/Bazzite.img"
+	linuxloops_args="rdinit=/linuxloops img_path=/bazzite/Bazzite.img img_uuid=382beb22-a137-49e8-b44a-ee62d376619d"
+	export linuxloops_args
+	configfile (loop,2)/grub2/grub.cfg
+  }
+  menuentry 'Nobara' --class 'nobara' {
+	savedefault
+        img_path="/nobara/Nobara.img"
+	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
+	search --no-floppy --set=root --file "/nobara/Nobara.img"
+	loopback loop "/nobara/Nobara.img"
+	linuxloops_args="rdinit=/linuxloops img_path=/nobara/Nobara.img img_uuid=382beb22-a137-49e8-b44a-ee62d376619d"
+	export linuxloops_args
+	configfile (loop,2)/grub2/grub.cfg
+  }
+  menuentry 'PikaOS' --class 'pikaos' {
+	savedefault
+        img_path="/pikaos/PikaOS.img"
+	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
+	search --no-floppy --set=root --file "/pikaos/PikaOS.img"
+	loopback loop "/pikaos/PikaOS.img"
+	linuxloops_args="rdinit=/linuxloops img_path=/pikaos/PikaOS.img img_uuid=382beb22-a137-49e8-b44a-ee62d376619d"
+	export linuxloops_args
+	configfile (loop,2)/grub/grub.cfg
+  }
+
   '';  
 
 }
