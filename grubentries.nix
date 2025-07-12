@@ -111,6 +111,27 @@ boot.loader.grub.extraEntries = ''
 	export linuxloops_args
 	configfile (loop,2)/grub/grub.cfg
   }
+  menuentry 'SteamOS' --class 'steamos' {
+	savedefault
+        img_path="/steamos3.7G/SteamOS.img"
+	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
+	search --no-floppy --set=root --file "/steamos3.7G/SteamOS.img"
+	loopback loop "/steamos3.7G/SteamOS.img"
+	linuxloops_args="rdinit=/linuxloops img_path=/steamos3.7G/SteamOS.img img_uuid=382beb22-a137-49e8-b44a-ee62d376619d"
+	export linuxloops_args
+	configfile (loop,2)/grub/grub.cfg
+  }
+  menuentry 'CachyOS gnome' --class 'cachyos' {
+	savedefault
+        img_path="/cachyos/CachyOS.img"
+	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
+	search --no-floppy --set=root --file "/cachyos/CachyOS.img"
+	loopback loop "/cachyos/CachyOS.img"
+	linuxloops_args="rdinit=/linuxloops img_path=/cachyos/CachyOS.img img_uuid=382beb22-a137-49e8-b44a-ee62d376619d"
+	export linuxloops_args
+	configfile (loop,2)/grub/grub.cfg
+  }
+
 
   '';  
 

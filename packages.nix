@@ -53,7 +53,9 @@
    pkgs.wev
    pkgs.s-tui
    pkgs.stress
-
+   pkgs.moonlight-qt
+   pkgs.vscodium
+   pkgs.nvtopPackages.intel   
 
   ];
 
