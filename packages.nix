@@ -49,13 +49,19 @@
    pkgs.gparted 
    pkgs.chiaki-ng 
    pkgs.google-chrome
-   pkgs.nwg-bar
    pkgs.wev
    pkgs.s-tui
    pkgs.stress
    pkgs.moonlight-qt
    pkgs.vscodium
-   pkgs.nvtopPackages.intel   
+   pkgs.nvtopPackages.intel
+   pkgs.btrfs-progs   
+   pkgs.neovim
+   pkgs.obsidian  
+   pkgs.tmux
+   pkgs.gimp3-with-plugins
+   pkgs.remmina   
+   pkgs.nwg-bar
 
   ];
 

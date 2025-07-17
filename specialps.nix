@@ -5,9 +5,8 @@
 {  environment.systemPackages = with pkgs; [ 
    pkgs.swayosd
 
-   
-
-    #special packages 
+    #special packages
+ 
    (pkgs.callPackage ./sddm-astronaut-theme.nix {
         theme = "jake_the_dog";
         themeConfig={

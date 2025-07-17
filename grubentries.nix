@@ -10,14 +10,16 @@ boot.loader.grub.extraEntries = ''
         search --no-floppy --fs-uuid --set=root 5356-F39B
         chainloader /efi/Microsoft/Boot/bootmgfw.efi
   }
-  menuentry "Arch Linux (on /dev/nvme0n1p10)" {
-        savedefault
-        insmod part_gpt
-        insmod fat
-        search --no-floppy --fs-uuid --set=root 08CD-A51E
-        linux /vmlinuz-linux root=/dev/nvme0n1p10
-        initrd /initramfs-linux.img
-  }
+  menuentry 'CachyOS Linux' --class cachyos --class gnu-linux --class gnu --class os {
+	savedefault
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod btrfs
+	search --no-floppy --fs-uuid --set=root 1b83b2e3-d653-42e1-924b-81c337c05339
+	linux	/@/boot/vmlinuz-linux-cachyos root=UUID=1b83b2e3-d653-42e1-924b-81c337c05339 rw rootflags=subvol=@  nowatchdog nvme_load=YES zswap.enabled=0 splash loglevel=3
+	initrd	/@/boot/initramfs-linux-cachyos.img
+}
   menuentry "Pop!_OS 24.04 LTS (24.04) (on /dev/nvme0n1p11)" {
         savedefault
         insmod part_gpt
@@ -50,16 +52,13 @@ boot.loader.grub.extraEntries = ''
         linux /boot/vmlinuz-6.16.0-0.rc0.250605gec7714e494790.13.fc43.x86_64 root=/dev/nvme0n1p14
         initrd /boot/initramfs-6.16.0-0.rc0.250605gec7714e494790.13.fc43.x86_64.img
   }
-  menuentry "Manjaro Linux" {
+  menuentry 'Manjaro Linux (25.0.5) (on /dev/nvme0n1p15)' --class manjarolinux --class gnu-linux --class gnu --class os {
 	savedefault
-	load_video
-	set gfxpayload=keep
-	insmod gzio
-	insmod part_gpt
+        insmod part_gpt
 	insmod ext2
-	search --no-floppy --fs-uuid --set=root 2ad74e4f-fd16-467b-add1-40772ee0635b
-	linux	/boot/vmlinuz-6.15-x86_64 root=UUID=2ad74e4f-fd16-467b-add1-40772ee0635b rw  quiet apparmor=1 security=apparmor udev.log_priority=3
-	initrd	/boot/intel-ucode.img /boot/amd-ucode.img /boot/initramfs-6.15-x86_64.img
+	search --no-floppy --fs-uuid --set=root 6a79d224-aa21-4011-bf80-732cebde2430
+	linux /boot/vmlinuz-6.15-x86_64 root=UUID=6a79d224-aa21-4011-bf80-732cebde2430 rw quiet apparmor=1 security=apparmor udev.log_priority=3
+	initrd /boot/intel-ucode.img /boot/amd-ucode.img /boot/initramfs-6.15-x86_64.img
   }
   menuentry "KDE Neon" {
         savedefault
@@ -131,7 +130,15 @@ boot.loader.grub.extraEntries = ''
 	export linuxloops_args
 	configfile (loop,2)/grub/grub.cfg
   }
-
+  menuentry 'Arch-Gnome' --class 'arch' {
+	img_path="/arch-gnome/ArchG.img"
+	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
+	search --no-floppy --set=root --file "/arch-gnome/ArchG.img"
+	loopback loop "/arch-gnome/ArchG.img"
+	linuxloops_args="rdinit=/linuxloops img_path=/arch-gnome/ArchG.img img_uuid=382beb22-a137-49e8-b44a-ee62d376619d"
+	export linuxloops_args
+	configfile (loop,2)/grub/grub.cfg
+  }
 
   '';  
 
