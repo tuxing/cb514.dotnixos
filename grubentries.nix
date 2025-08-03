@@ -60,6 +60,15 @@ boot.loader.grub.extraEntries = ''
 	linux /boot/vmlinuz-6.15-x86_64 root=UUID=6a79d224-aa21-4011-bf80-732cebde2430 rw quiet apparmor=1 security=apparmor udev.log_priority=3
 	initrd /boot/intel-ucode.img /boot/amd-ucode.img /boot/initramfs-6.15-x86_64.img
   }
+  menuentry 'Debian' --class 'debian' {
+	img_path="/debianC/Debian.img"
+	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
+	search --no-floppy --set=root --file "/debianC/Debian.img"
+	loopback loop "/debianC/Debian.img"
+	linuxloops_args="rdinit=/linuxloops img_path=/debianC/Debian.img img_uuid=382beb22-a137-49e8-b44a-ee62d376619d"
+	export linuxloops_args
+	configfile (loop,2)/grub/grub.cfg
+  }
   menuentry "KDE Neon" {
         savedefault
         img_path="/kde/KDE.img"
@@ -131,7 +140,8 @@ boot.loader.grub.extraEntries = ''
 	configfile (loop,2)/grub/grub.cfg
   }
   menuentry 'Arch-Gnome' --class 'arch' {
-	img_path="/arch-gnome/ArchG.img"
+	savedefault
+        img_path="/arch-gnome/ArchG.img"
 	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
 	search --no-floppy --set=root --file "/arch-gnome/ArchG.img"
 	loopback loop "/arch-gnome/ArchG.img"
@@ -139,6 +149,16 @@ boot.loader.grub.extraEntries = ''
 	export linuxloops_args
 	configfile (loop,2)/grub/grub.cfg
   }
+  menuentry 'OpenSUSE' --class 'opensuse' {
+	img_path="/opensusek/OpenSUSEk.img"
+	img_uuid="382beb22-a137-49e8-b44a-ee62d376619d"
+	search --no-floppy --set=root --file "/opensusek/OpenSUSEk.img"
+	loopback loop "/opensusek/OpenSUSEk.img"
+	linuxloops_args="rdinit=/linuxloops img_path=/opensusek/OpenSUSEk.img img_uuid=382beb22-a137-49e8-b44a-ee62d376619d"
+	export linuxloops_args
+	configfile (loop,2)/grub2/grub.cfg
+  }
+
 
   '';  
 

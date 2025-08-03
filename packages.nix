@@ -62,6 +62,13 @@
    pkgs.gimp3-with-plugins
    pkgs.remmina   
    pkgs.nwg-bar
+   pkgs.realvnc-vnc-viewer
+   pkgs.gemini-cli
+   pkgs.gearlever
+   pkgs.appimage-run
+   pkgs.fuse 
+   pkgs.icu77 
+   pkgs.kdePackages.filelight 
 
   ];
 

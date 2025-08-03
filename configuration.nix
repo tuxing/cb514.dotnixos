@@ -79,6 +79,10 @@
   xdg.menus.enable = true;
   xdg.mime.enable = true;
 
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+ # programs.appimage.package = pkgs.appimage-run.override { extraPkgs = pkgs: [ pkgs.fuse ]; };
+
   #enable hyprland 
   programs.hyprland.enable = true;  
  
