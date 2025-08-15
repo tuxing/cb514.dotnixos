@@ -19,7 +19,7 @@ boot.loader.grub.extraEntries = ''
 	search --no-floppy --fs-uuid --set=root 1b83b2e3-d653-42e1-924b-81c337c05339
 	linux	/@/boot/vmlinuz-linux-cachyos root=UUID=1b83b2e3-d653-42e1-924b-81c337c05339 rw rootflags=subvol=@  nowatchdog nvme_load=YES zswap.enabled=0 splash loglevel=3
 	initrd	/@/boot/initramfs-linux-cachyos.img
-}
+ }
   menuentry "Pop!_OS 24.04 LTS (24.04) (on /dev/nvme0n1p11)" {
         savedefault
         insmod part_gpt
@@ -35,14 +35,6 @@ boot.loader.grub.extraEntries = ''
         search --no-floppy --fs-uuid --set=root 52b5953a-789d-4c4b-9d9a-771e4f90f083
         linux /boot/vmlinuz-6.15.0-061500-generic root=UUID=52b5953a-789d-4c4b-9d9a-771e4f90f083 ro quiet splash
         initrd /boot/initrd.img-6.15.0-061500-generic
-  }
-  menuentry "Ubuntu Questing Quokka (development branch) (25.10) (on /dev/nvme0n1p9)" {
-        savedefault
-        insmod part_gpt
-        insmod ext2
-        search --no-floppy --fs-uuid --set=root 6bb17358-5660-4521-93e2-8a34d48431a3
-        linux /boot/vmlinuz-6.14.0-15-generic root=UUID=6bb17358-5660-4521-93e2-8a34d48431a3 ro quiet splash crashkernel=2G-4G:320M,4G-32G:512M,32G-64G:1024M,64G-128G:2048M,128G-:4096M $vt_handoff
-        initrd /boot/initrd.img-6.14.0-15-generic
   }
   menuentry "Fedora Linux 43 (Sway Prerelease) (on /dev/nvme0n1p14)" {
         savedefault
